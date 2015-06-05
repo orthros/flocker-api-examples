@@ -6,6 +6,7 @@ import (
     "os"
     "log"
     "fmt"
+    "bytes"
     "io/ioutil"
     "net/http"
 )
@@ -53,6 +54,20 @@ func getUrl(config map[string]string, path string) (string) {
     return url
 }
 
+func handleRequest(resp *http.Response, err error) () {
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer resp.Body.Close()
+
+    // Dump response
+    data, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(string(data))
+}
+
 func main() {
     
     config := map[string]string{}
@@ -68,17 +83,15 @@ func main() {
 
     client := getTLSClient(config)
     
-    // Do GET something
-    resp, err := client.Get(getUrl(config, "/v1/version"))
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer resp.Body.Close()
+    // Make the first request to check the service is working.
+    handleRequest(client.Get(getUrl(config, "/v1/version")))
 
-    // Dump response
-    data, err := ioutil.ReadAll(resp.Body)
+    // Create a volume.
+    var jsonStr = []byte(`{"primary": "5540d6e3-392b-4da0-828a-34b724c5bb80", "maximum_size": 107374182400, "metadata": {"name": "mongodb_data"}}`)
+    req, err := http.NewRequest("POST", getUrl(config, "/v1/configuration/datasets"), bytes.NewBuffer(jsonStr))
     if err != nil {
         log.Fatal(err)
     }
-    fmt.Println(string(data))
+    req.Header.Set("Content-Type", "application/json")
+    handleRequest(client.Do(req))
 }
