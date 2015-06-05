@@ -1,0 +1,22 @@
+Installing curl on OSX:
+
+brew install curl --with-openssl
+brew link --force curl
+hash -r
+curl --version
+
+NOTE - for the python example to work you need at least python 2.7.9
+
+
+Python API version:
+
+http://build.clusterhq.com/results/docs/pythonexample-doc-FLOC-2087/build-7539/using/examples/api-python-example.html
+
+
+Running curl commands:
+
+cd ~/projects/docker-plugins-demo/runner/unofficial-flocker-tools
+
+curl --cacert $PWD/cluster.crt --cert $PWD/flockerdemo.crt --key $PWD/flockerdemo.key https://54.157.8.57:4523/v1/configuration/datasets | jq '.'
+
+curl -s --cacert $PWD/cluster.crt --cert $PWD/flockerdemo.crt --key $PWD/flockerdemo.key --header "Content-type: application/json" -XPOST -d '{"primary": "'${NODE_UUID}'", "maximum_size": 107374182400, "metadata": {"name": "mongodb_data_fingers"}}'  https://54.157.8.57:4523/v1/configuration/datasets | jq '.'
