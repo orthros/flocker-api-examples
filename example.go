@@ -54,6 +54,8 @@ func getUrl(config map[string]string, path string) (string) {
     return url
 }
 
+// a function that looks after printing a HTTP requests response
+// to stdout and handling errors
 func handleRequest(resp *http.Response, err error) () {
     if err != nil {
         log.Fatal(err)
