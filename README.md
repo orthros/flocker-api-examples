@@ -2,7 +2,7 @@
 
 A repository demonstrating how to use the Flocker REST API using various languages.
 
-Each example expects there to be a running Flocker cluster with TLS authentciation setup.
+Each example expects there to be a running Flocker cluster with TLS authentication setup.
 
 ## installation
 
