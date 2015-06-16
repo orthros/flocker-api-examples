@@ -31,7 +31,7 @@ environment variables):
 To run the tests:
 
 ```bash
-$ make test
+$ bash runtests.sh
 ```
 
 This will use the included Vagrantfile to spin up a 2 node Flocker cluster.
