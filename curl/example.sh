@@ -41,4 +41,4 @@ make-api-request "GET" "/v1/version"
 
 # Create a volume.
 make-api-request "POST" "/v1/configuration/datasets" \
-    '{"primary": "5540d6e3-392b-4da0-828a-34b724c5bb80", "maximum_size": 107374182400, "metadata": {"name": "testdata"}}'
+    '{"primary": "5540d6e3-392b-4da0-828a-34b724c5bb80", "maximum_size": 107374182400, "metadata": {"name": "example_dataset"}}'

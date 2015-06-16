@@ -17,7 +17,7 @@ $ cd flocker-api-examples
 
 ## configuration
 
-You will need to change the following values (either by editing the source files or by setting
+For each of the examples - you can change the following values (either by editing the source files or by setting
 environment variables):
 
  * CONTROL_SERVICE - the IP address of the Flocker control service
@@ -26,33 +26,15 @@ environment variables):
  * CERT_FILE - the API certificate file to use
  * CA_FILE - the certificate authority file to use
 
-## python
+## tests
+
+To run the tests:
 
 ```bash
-$ python example.py
+$ make test
 ```
 
-NOTE: you will need at least python 2.7.9 to run the example
+This will use the included Vagrantfile to spin up a 2 node Flocker cluster.
 
-## curl
+It will then test the output of the examples against an expected output.
 
-```bash
-$ bash example.sh
-```
-
-NOTE: if you are on OSX - you will need a version of curl that supports OpenSSL:
-
-```bash
-$ brew install curl --with-openssl
-$ brew link --force curl
-$ hash -r
-$ curl --version
-curl 7.42.1 (x86_64-apple-darwin14.1.0) libcurl/7.42.1 OpenSSL/1.0.2a zlib/1.2.5
-```
-
-## golang
-
-```bash
-$ go build example.go
-$ ./example
-```
