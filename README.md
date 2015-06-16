@@ -31,7 +31,9 @@ environment variables):
 To run the tests:
 
 ```bash
+$ vagrant up
 $ bash runtests.sh
+$ vagrant destroy -f
 ```
 
 This will use the included Vagrantfile to spin up a 2 node Flocker cluster.
