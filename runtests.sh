@@ -11,3 +11,10 @@ if [ ! -d "$DIR/test-flocker-cluster" ]; then
 fi
 
 (cd $DIR/test-flocker-cluster && git pull)
+(cd $DIR/test-flocker-cluster && make boot)
+
+curl -s \
+    --cacert $DIR/test-flocker-cluster/_files/cluster.crt \
+    --cert $DIR/test-flocker-cluster/_files/user.crt \
+    --key $DIR/test-flocker-cluster/_files/user.key \
+    https://172.16.255.250:4523/v1/state/nodes
