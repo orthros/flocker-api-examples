@@ -11,8 +11,6 @@ Thumbs.db
 
 # Vagrant #
 ###########
-*.key
-*.crt
 example
 .vagrant
 test-flocker-cluster
