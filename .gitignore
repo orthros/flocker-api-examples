@@ -15,3 +15,4 @@ Thumbs.db
 *.crt
 example
 .vagrant
+test-flocker-cluster
